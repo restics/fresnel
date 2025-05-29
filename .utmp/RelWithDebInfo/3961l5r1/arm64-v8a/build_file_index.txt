@@ -1,0 +1,2 @@
+E:\Unity\Unity Projects\QuestTest\questtest\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+E:\Unity\Unity Projects\QuestTest\questtest\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt
