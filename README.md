@@ -1,4 +1,4 @@
-# Fresnel: Stereoscopic 3d XR client made in Unity
+# Fresnel: Stereoscopic 3d livestream client made in Unity
 
 ## What does this do??
  - this takes a side by side stereoscopic livestream and displays it in stereoscopic 3d in Meta Quest headsets
