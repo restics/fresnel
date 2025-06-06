@@ -27,6 +27,8 @@ public class StreamManager : MonoBehaviour
 
     private Renderer _displayRenderer;
 
+    private Material _displayMaterial;
+
     public Vector2 leftOffset = new Vector2(0.0f, 0.0f);
     public Vector2 rightOffset = new Vector2(0.5f, 0.0f);
 
@@ -200,9 +202,9 @@ public class StreamManager : MonoBehaviour
         {
             Graphics.Blit(tex2D, _displayRenderTexture);
             _displayRenderer.material.SetVector("_LeftOffset", leftOffset);
-            _displayRenderer.material.SetVector("_LeftTiling", new Vector2(1.0f, 1.0f));
+            _displayRenderer.material.SetVector("_LeftTiling", leftTiling);
             _displayRenderer.material.SetVector("_RightOffset", rightOffset);
-            _displayRenderer.material.SetVector("_RightTiling", new Vector2(1.0f, 1.0f));
+            _displayRenderer.material.SetVector("_RightTiling", rightTiling);
         }
 
         // Clean up the intermediate texture
