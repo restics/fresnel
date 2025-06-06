@@ -3,36 +3,100 @@ using LiveKit;
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
-using LiveKit.Proto;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+//using Unity.WebRTC;
 
 public class StreamManager : MonoBehaviour
 {
-    public string roomToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODAwMDY0MDcsImlzcyI6IkFQSWFTNVVmeXJQS3VjOCIsIm5iZiI6MTc0ODQ3MDQwOCwic3ViIjoiMiIsInZpZGVvIjp7ImNhblB1Ymxpc2giOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsInJvb20iOiJhYmNkIiwicm9vbUpvaW4iOnRydWV9fQ.t3E8f_yQdCS7N9Z4UPCeZs85C9ftFhzNaMfxvLEfYX8";
+
+    public enum StreamSource{
+        LIVEKIT,
+        WEBRTC
+    }
+    private string roomToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODAwMDY0MDcsImlzcyI6IkFQSWFTNVVmeXJQS3VjOCIsIm5iZiI6MTc0ODQ3MDQwOCwic3ViIjoiMiIsInZpZGVvIjp7ImNhblB1Ymxpc2giOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsInJvb20iOiJhYmNkIiwicm9vbUpvaW4iOnRydWV9fQ.t3E8f_yQdCS7N9Z4UPCeZs85C9ftFhzNaMfxvLEfYX8";
+
+    public string wsurl = "wss://test-ky7qsf6n.livekit.cloud";
     private Room _room;
     private int _retryCount = 0;
     private const int MAX_RETRIES = 3;
 
-    IEnumerator Start()
+    private Texture _pendingTexture;
+
+    private RenderTexture _displayRenderTexture;
+
+    private Renderer _displayRenderer;
+
+    public Vector2 leftOffset = new Vector2(0.0f, 0.0f);
+    public Vector2 rightOffset = new Vector2(0.5f, 0.0f);
+
+    public Vector2 leftTiling = new Vector2(0.5f, 1.0f);
+    public Vector2 rightTiling = new Vector2(0.5f, 1.0f);
+
+    public StreamSource streamSource = StreamSource.LIVEKIT;
+
+    public float opacity = 1.0f;
+
+    // private MediaStream receiveStream;
+    // private RTCPeerConnection pc;
+
+
+    void Start()
     {
-        yield return ConnectToRoom();
+
+        // Ensure VR is properly initialized
+        if (!OVRManager.isHmdPresent)
+        {
+            Debug.LogError("No VR headset detected. Please ensure your VR headset is properly connected.");
+            return;
+        }
+
+        // Wait for VR initialization
+        StartCoroutine(WaitForVRInitialization());
+
+        
+        _displayRenderer = GetComponent<Renderer>();
+
+        // Initialize render textures
+        InitializeRenderTextures();
+    }
+
+    private void InitializeRenderTextures()
+    {
+        _displayRenderTexture = new RenderTexture(1920, 1080, 24, RenderTextureFormat.ARGB32);
+        if (_displayRenderer != null) _displayRenderer.material.mainTexture = _displayRenderTexture;
+
+        Debug.Log("Render textures initialized successfully");
+    }
+
+    private IEnumerator WaitForVRInitialization()
+    {
+        // Wait for VR to be fully initialized
+        while (!OVRManager.isHmdPresent || !OVRManager.hasVrFocus)
+        {
+            yield return null;
+        }
+
+        // Now that VR is initialized, proceed with room connection
+        if (streamSource == StreamSource.LIVEKIT) StartCoroutine(ConnectToRoom());
+        else if (streamSource == StreamSource.WEBRTC) StartCoroutine(ConnectToWebRTC());
     }
 
     private IEnumerator ConnectToRoom()
     {
         _room = new Room();
-        _room.ConnectionStateChanged += OnConnectionStateChanged;
         _room.TrackSubscribed += TrackSubscribed;
 
         var options = new RoomOptions
         {
             AutoSubscribe = true,
             Dynacast = true,
-            AdaptiveStream = true,
-            JoinRetries = 3
+            AdaptiveStream = false,
+            JoinRetries = 5
         };
 
         Debug.Log($"Attempting to connect to LiveKit room (Attempt {_retryCount + 1}/{MAX_RETRIES})");
-        var connect = _room.Connect("wss://test-ky7qsf6n.livekit.cloud", roomToken, options);
+        var connect = _room.Connect(wsurl, roomToken, options);
         yield return connect;
 
         if (!connect.IsError)
@@ -41,7 +105,7 @@ public class StreamManager : MonoBehaviour
             var text = transform.parent.GetComponentInChildren<TextMeshProUGUI>();
             if (text != null)
             {
-                text.text = "Connected to " + _room.Name;
+                text.text = "";
             }
             Debug.Log($"Successfully connected to room: {_room.Name}");
         }
@@ -68,44 +132,83 @@ public class StreamManager : MonoBehaviour
         }
     }
 
-    private void OnConnectionStateChanged(ConnectionState state)
-    {
-        Debug.Log($"Connection state changed to: {state}");
-        switch (state)
-        {
-            case ConnectionState.Connecting:
-                Debug.Log("Connecting to LiveKit...");
-                break;
-            case ConnectionState.Connected:
-                Debug.Log("Connected to LiveKit!");
-                break;
-            case ConnectionState.Disconnected:
-                Debug.Log("Disconnected from LiveKit");
-                break;
-            case ConnectionState.Failed:
-                Debug.LogError("Failed to connect to LiveKit");
-                break;
+    public void UpdateOpacity(float newOpacity){
+        if (_displayRenderer != null){
+            _displayRenderer.material.SetFloat("_Opacity", newOpacity);
         }
     }
 
-    void TrackSubscribed(IRemoteTrack track, RemoteTrackPublication publication, RemoteParticipant participant)
+    public void UpdateOffset(float newOffset, bool isLeft){
+        if (isLeft){
+            leftOffset.x = 0.5f + newOffset;
+            leftTiling.x = 0.5f + newOffset;
+        }
+        else{
+            rightOffset.x = newOffset;
+            rightTiling.x = 0.5f + newOffset;
+        }
+    }
+
+    private IEnumerator ConnectToWebRTC(){
+
+        yield return null;
+    }
+
+
+    private void TrackSubscribed(IRemoteTrack track, RemoteTrackPublication publication, RemoteParticipant participant)
     {
         if (track is RemoteVideoTrack videoTrack)
         {
-            var rawImage = GetComponent<RawImage>();
+            Debug.Log($"Received video track from participant: {participant.Identity}");
+            
+            // Create a new VideoStream instance
             var stream = new VideoStream(videoTrack);
-            stream.TextureReceived += (tex) =>
-            {
-                rawImage.texture = tex;
+            
+            // Set up the texture received event
+            stream.TextureReceived += (texture) => {
+                Debug.Log($"TextureReceived event fired - Texture: {(texture != null ? $"{texture.width}x{texture.height}" : "null")}");
+                if (texture != null) {
+                    _pendingTexture = texture;
+                    Debug.Log($"Updated pending texture: {texture.width}x{texture.height}");
+                }
             };
+
+            // Start the video stream
+            stream.Start();
             StartCoroutine(stream.Update());
+            Debug.Log("Video stream started and update coroutine initiated");
         }
-        else if (track is RemoteAudioTrack audioTrack)
+    }
+
+    void LateUpdate()
+    {
+        if (_pendingTexture == null)
         {
-            GameObject audObject = new GameObject(audioTrack.Sid);
-            var source = audObject.AddComponent<AudioSource>();
-            var stream = new AudioStream(audioTrack, source);
-            // Audio is being played on the source ..
+            Debug.Log("No pending texture available");
+            return;
+        }
+
+
+        Debug.Log($"Converting texture: {_pendingTexture.width}x{_pendingTexture.height}");
+        Texture2D tex2D = ToTexture2D(_pendingTexture);
+        if (tex2D == null)
+        {
+            Debug.LogError("Failed to convert texture to Texture2D");
+            return;
+        }
+        if (_displayRenderer != null)
+        {
+            Graphics.Blit(tex2D, _displayRenderTexture);
+            _displayRenderer.material.SetVector("_LeftOffset", leftOffset);
+            _displayRenderer.material.SetVector("_LeftTiling", new Vector2(1.0f, 1.0f));
+            _displayRenderer.material.SetVector("_RightOffset", rightOffset);
+            _displayRenderer.material.SetVector("_RightTiling", new Vector2(1.0f, 1.0f));
+        }
+
+        // Clean up the intermediate texture
+        if (tex2D != null && tex2D != _pendingTexture)
+        {
+            Destroy(tex2D);
         }
     }
 
@@ -113,9 +216,65 @@ public class StreamManager : MonoBehaviour
     {
         if (_room != null)
         {
-            _room.ConnectionStateChanged -= OnConnectionStateChanged;
             _room.TrackSubscribed -= TrackSubscribed;
             _room.Disconnect();
         }
+
+        // // Clean up render textures
+        // if (_leftRenderTexture != null)
+        // {
+        //     _leftRenderTexture.Release();
+        //     Destroy(_leftRenderTexture);
+        // }
+        // if (_rightRenderTexture != null)
+        // {
+        //     _rightRenderTexture.Release();
+        //     Destroy(_rightRenderTexture);
+        // }
+        if (_displayRenderTexture != null)
+        {
+            _displayRenderTexture.Release();
+            Destroy(_displayRenderTexture);
+        }
+
     }
+
+    private Texture2D ToTexture2D(Texture texture)
+    {
+        if (texture == null)
+        {
+            Debug.LogWarning("Input texture is null in ToTexture2D");
+            return null;
+        }
+        
+        // If it's already a Texture2D, return it directly
+        if (texture is Texture2D texture2D)
+        {
+            Debug.Log("Input is already a Texture2D");
+            return texture2D;
+        }
+
+        Debug.Log($"Converting texture to Texture2D: {texture.width}x{texture.height}");
+        // Create a new Texture2D with the same dimensions
+        Texture2D result = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, false);
+        
+        // Create a temporary RenderTexture
+        RenderTexture rt = new RenderTexture(texture.width, texture.height, 0, RenderTextureFormat.ARGB32);
+        RenderTexture.active = rt;
+        
+        // Copy the texture to the RenderTexture
+        Graphics.Blit(texture, rt);
+        
+        // Read the pixels from the RenderTexture
+        result.ReadPixels(new Rect(0, 0, rt.width, rt.height), 0, 0);
+        result.Apply();
+        
+        // Clean up
+        RenderTexture.active = null;    
+        rt.Release();
+        
+        Debug.Log("Texture conversion completed successfully");
+        return result;
+    }
+
 }

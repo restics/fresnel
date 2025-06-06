@@ -221,8 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3861ad9de399fdd418386189da350232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomName: Labpie2025
-  roomToken: Labpie2025
+  leftOffset: {x: 0, y: 0}
+  rightOffset: {x: 0.5, y: 0}
 --- !u!1 &5663732185221476692
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +507,6 @@ GameObject:
   - component: {fileID: 7876772534218919215}
   - component: {fileID: 104509717689689326}
   - component: {fileID: 4968196273532906740}
-  - component: {fileID: 3560387684077880427}
   m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
@@ -691,22 +690,6 @@ MonoBehaviour:
   m_SendPointerHoverToParent: 1
   _useInitialPressPositionForDrag: 1
   _exclusiveMode: 1
---- !u!114 &3560387684077880427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6584290743730084017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ffe41fe81087fa41a2062cc69b99615, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _transferOnSecondSelection: 0
-  _addNewPointsToFront: 0
-  _forwardElement: {fileID: 0}
-  _canvas: {fileID: 3278772334681433600}
 --- !u!1 &8229565028115607294
 GameObject:
   m_ObjectHideFlags: 0
