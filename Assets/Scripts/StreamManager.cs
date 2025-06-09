@@ -10,24 +10,34 @@ using UnityEngine.Rendering.Universal;
 public class StreamManager : MonoBehaviour
 {
 
-    public enum StreamSource{
-        LIVEKIT,
-        WEBRTC
-    }
+    // public enum StreamSource{
+    //     LIVEKIT,
+    //     WEBRTC
+    // }
     private string roomToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODAwMDY0MDcsImlzcyI6IkFQSWFTNVVmeXJQS3VjOCIsIm5iZiI6MTc0ODQ3MDQwOCwic3ViIjoiMiIsInZpZGVvIjp7ImNhblB1Ymxpc2giOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsInJvb20iOiJhYmNkIiwicm9vbUpvaW4iOnRydWV9fQ.t3E8f_yQdCS7N9Z4UPCeZs85C9ftFhzNaMfxvLEfYX8";
 
     public string wsurl = "wss://test-ky7qsf6n.livekit.cloud";
+
+
+    private string localroomToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODAwMDY0MDcsImlzcyI6IkFQSWFTNVVmeXJQS3VjOCIsIm5iZiI6MTc0ODQ3MDQwOCwic3ViIjoiMiIsInZpZGVvIjp7ImNhblB1Ymxpc2giOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsInJvb20iOiJhYmNkIiwicm9vbUpvaW4iOnRydWV9fQ.t3E8f_yQdCS7N9Z4UPCeZs85C9ftFhzNaMfxvLEfYX8";
+
+    public string localwsurl = "wss://test-ky7qsf6n.livekit.cloud";
     private Room _room;
     private int _retryCount = 0;
     private const int MAX_RETRIES = 3;
 
     private Texture _pendingTexture;
 
-    private RenderTexture _displayRenderTexture;
+    //private RenderTexture _displayRenderTexture;
+    private RenderTexture _leftEyeRenderTexture;
+    private RenderTexture _rightEyeRenderTexture;
 
-    private Renderer _displayRenderer;
+    //private Renderer _displayRenderer;
 
-    private Material _displayMaterial;
+    private Renderer _leftEyeRenderer;
+    private Renderer _rightEyeRenderer;
+
+    //private Material _displayMaterial;
 
     public Vector2 leftOffset = new Vector2(0.0f, 0.0f);
     public Vector2 rightOffset = new Vector2(0.5f, 0.0f);
@@ -35,7 +45,7 @@ public class StreamManager : MonoBehaviour
     public Vector2 leftTiling = new Vector2(0.5f, 1.0f);
     public Vector2 rightTiling = new Vector2(0.5f, 1.0f);
 
-    public StreamSource streamSource = StreamSource.LIVEKIT;
+    //public StreamSource streamSource = StreamSource.LIVEKIT;
 
     public float opacity = 1.0f;
 
@@ -56,8 +66,10 @@ public class StreamManager : MonoBehaviour
         // Wait for VR initialization
         StartCoroutine(WaitForVRInitialization());
 
-        
-        _displayRenderer = GetComponent<Renderer>();
+        _leftEyeRenderer = transform.Find("LeftEye").GetComponent<Renderer>();
+        _rightEyeRenderer = transform.Find("RightEye").GetComponent<Renderer>();
+
+        //_displayRenderer = GetComponent<Renderer>();
 
         // Initialize render textures
         InitializeRenderTextures();
@@ -65,11 +77,30 @@ public class StreamManager : MonoBehaviour
 
     private void InitializeRenderTextures()
     {
-        _displayRenderTexture = new RenderTexture(1920, 1080, 24, RenderTextureFormat.ARGB32);
-        if (_displayRenderer != null) _displayRenderer.material.mainTexture = _displayRenderTexture;
+        //_displayRenderTexture = new RenderTexture(1920, 1080, 24, RenderTextureFormat.ARGB32);
+        _leftEyeRenderTexture = new RenderTexture(1920, 1080, 24, RenderTextureFormat.ARGB32);
+        _rightEyeRenderTexture = new RenderTexture(1920, 1080, 24, RenderTextureFormat.ARGB32);
+
+        // _displayMaterial = new Material(Shader.Find("Shader Graphs/sbsShader"));
+        // _leftEyeRenderer.material = _displayMaterial;
+        // _rightEyeRenderer.material = _displayMaterial;
+
+        // if (_displayRenderer != null) _displayRenderer.material.mainTexture = _displayRenderTexture;
+
+
+        if (_leftEyeRenderer != null) {
+            _leftEyeRenderer.material.mainTexture = _leftEyeRenderTexture;    
+            _leftEyeRenderer.material.SetFloat("_isLeft", 1.0f);
+        }
+        if (_rightEyeRenderer != null) {
+            _rightEyeRenderer.material.mainTexture = _rightEyeRenderTexture;
+            _rightEyeRenderer.material.SetFloat("_isLeft", 0.0f);
+        }
+
 
         Debug.Log("Render textures initialized successfully");
     }
+
 
     private IEnumerator WaitForVRInitialization()
     {
@@ -80,8 +111,10 @@ public class StreamManager : MonoBehaviour
         }
 
         // Now that VR is initialized, proceed with room connection
-        if (streamSource == StreamSource.LIVEKIT) StartCoroutine(ConnectToRoom());
-        else if (streamSource == StreamSource.WEBRTC) StartCoroutine(ConnectToWebRTC());
+        // if (streamSource == StreamSource.LIVEKIT) StartCoroutine(ConnectToRoom());
+        // else if (streamSource == StreamSource.WEBRTC) StartCoroutine(ConnectToWebRTC());
+
+        StartCoroutine(ConnectToRoom());
     }
 
     private IEnumerator ConnectToRoom()
@@ -135,25 +168,30 @@ public class StreamManager : MonoBehaviour
     }
 
     public void UpdateOpacity(float newOpacity){
-        if (_displayRenderer != null){
-            _displayRenderer.material.SetFloat("_Opacity", newOpacity);
+        // if (_displayRenderer != null){
+        //     _displayRenderer.material.SetFloat("_Opacity", newOpacity);
+        // }
+        if (_leftEyeRenderer != null){
+            _leftEyeRenderer.material.SetFloat("_Opacity", newOpacity);
+        }
+        if (_rightEyeRenderer != null){
+            _rightEyeRenderer.material.SetFloat("_Opacity", newOpacity);
         }
     }
 
-    public void UpdateOffset(float newOffset, bool isLeft){
-        if (isLeft){
-            leftOffset.x = 0.5f + newOffset;
-            leftTiling.x = 0.5f + newOffset;
+    public void UpdateOffset(float newOffset){
+        transform.Find("LeftEye").transform.localPosition = new Vector3(newOffset, 0.0f, 0.0f);
+        transform.Find("RightEye").transform.localPosition = new Vector3(-newOffset, 0.0f, 0.0f);
+    }
+
+    public void UpdateStereoMode(bool isStereo){
+        if (isStereo){
+            leftOffset.x = 0.5f;
+
         }
         else{
-            rightOffset.x = newOffset;
-            rightTiling.x = 0.5f + newOffset;
+            leftOffset.x = 0.0f;
         }
-    }
-
-    private IEnumerator ConnectToWebRTC(){
-
-        yield return null;
     }
 
 
@@ -198,13 +236,15 @@ public class StreamManager : MonoBehaviour
             Debug.LogError("Failed to convert texture to Texture2D");
             return;
         }
-        if (_displayRenderer != null)
+        if (_leftEyeRenderTexture != null && _rightEyeRenderTexture != null)
         {
-            Graphics.Blit(tex2D, _displayRenderTexture);
-            _displayRenderer.material.SetVector("_LeftOffset", leftOffset);
-            _displayRenderer.material.SetVector("_LeftTiling", leftTiling);
-            _displayRenderer.material.SetVector("_RightOffset", rightOffset);
-            _displayRenderer.material.SetVector("_RightTiling", rightTiling);
+            // Graphics.Blit(tex2D, _displayRenderTexture);
+            Graphics.Blit(tex2D, _leftEyeRenderTexture);
+            Graphics.Blit(tex2D, _rightEyeRenderTexture);
+            _leftEyeRenderer.material.SetVector("_LeftOffset", leftOffset);
+            _leftEyeRenderer.material.SetVector("_LeftTiling", leftTiling);
+            _rightEyeRenderer.material.SetVector("_RightOffset", rightOffset);
+            _rightEyeRenderer.material.SetVector("_RightTiling", rightTiling);
         }
 
         // Clean up the intermediate texture
@@ -222,21 +262,29 @@ public class StreamManager : MonoBehaviour
             _room.Disconnect();
         }
 
-        // // Clean up render textures
-        // if (_leftRenderTexture != null)
-        // {
-        //     _leftRenderTexture.Release();
-        //     Destroy(_leftRenderTexture);
-        // }
-        // if (_rightRenderTexture != null)
-        // {
-        //     _rightRenderTexture.Release();
-        //     Destroy(_rightRenderTexture);
-        // }
-        if (_displayRenderTexture != null)
+        // Clean up render textures
+        if (_leftEyeRenderTexture != null)
         {
-            _displayRenderTexture.Release();
-            Destroy(_displayRenderTexture);
+            _leftEyeRenderTexture.Release();
+            Destroy(_leftEyeRenderTexture);
+        }
+        if (_rightEyeRenderTexture != null)
+        {
+            _rightEyeRenderTexture.Release();
+            Destroy(_rightEyeRenderTexture);
+        }
+        // if (_displayRenderTexture != null)
+        // {
+        //     _displayRenderTexture.Release();
+        //     Destroy(_displayRenderTexture);
+        // }
+        if (_leftEyeRenderer != null)
+        {
+            _leftEyeRenderer.material.mainTexture = null;
+        }
+        if (_rightEyeRenderer != null)
+        {
+            _rightEyeRenderer.material.mainTexture = null;
         }
 
     }
@@ -245,18 +293,18 @@ public class StreamManager : MonoBehaviour
     {
         if (texture == null)
         {
-            Debug.LogWarning("Input texture is null in ToTexture2D");
+            //Debug.LogWarning("Input texture is null in ToTexture2D");
             return null;
         }
         
         // If it's already a Texture2D, return it directly
         if (texture is Texture2D texture2D)
         {
-            Debug.Log("Input is already a Texture2D");
+           //Debug.Log("Input is already a Texture2D");
             return texture2D;
         }
 
-        Debug.Log($"Converting texture to Texture2D: {texture.width}x{texture.height}");
+        //Debug.Log($"Converting texture to Texture2D: {texture.width}x{texture.height}");
         // Create a new Texture2D with the same dimensions
         Texture2D result = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, false);
         
@@ -275,7 +323,7 @@ public class StreamManager : MonoBehaviour
         RenderTexture.active = null;    
         rt.Release();
         
-        Debug.Log("Texture conversion completed successfully");
+        //Debug.Log("Texture conversion completed successfully");
         return result;
     }
 
