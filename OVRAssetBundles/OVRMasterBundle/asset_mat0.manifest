@@ -1,0 +1,58 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.1.4f1
+CRC: 1235876784
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 90b4521a3e2294bf9c68784d3d39f770
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 4946d9aa1a4c0871d75943c6e3d5e7c6
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 914b4eac869ca1a9d374614ed89c19ac
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/OculusHandWire.mat
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForQuestAndRiftS/Materials/OculusTouchForQuestAndRiftS_Material.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Materials/RoundedBoxUI.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/ProceduralArcMaterial.mat
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPlus/Materials/MetaQuestTouchPlusMATphong_left.mat
+- Assets/Shaders/Shader Graphs_SBS Shader URP.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Materials/RoundedBoxGradientUILight.mat
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPro/Materials/MetaQuestProLeft_Material.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/DistanceReticle.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/OculusHandPinchMaterial.mat
+- Packages/com.meta.xr.sdk.core/Editor/BuildingBlocks/BlockData/HandTracking/Materials/SystemGestureHandMaterial.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/TeleportReticleMaterial.mat
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForRift/Materials/OculusTouchForRift_Material.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Materials/RoundedBoxGradientUICustom1.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/TunnelingEffect.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/OculusHandCursor.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/LocomotionIndicatorMaterial.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Materials/LinearGradientUIDark.mat
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPro/Materials/batteryIndicator_mat.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/OculusControllerRayCursor.mat
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForQuest2/Materials/OculusTouchForQuest2_MAT.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Materials/RoundedBoxGradientUICustom2.mat
+- Packages/com.meta.xr.sdk.core/Editor/BuildingBlocks/BlockData/HandTracking/Materials/SkeletonBoneMaterial.mat
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPro/Materials/MetaQuestProRight_Material.mat
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPlus/Materials/MetaQuestTouchPlusMATphong_right.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/OculusControllerRayMaterial.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Materials/RoundedBoxGradientUIDark.mat
+- Packages/com.meta.xr.sdk.interaction/Runtime/Materials/TransparentStandard.mat
+- Packages/com.unity.render-pipelines.universal/Runtime/Materials/Lit.mat
+- Packages/com.meta.xr.sdk.core/Editor/BuildingBlocks/BlockData/HandTracking/Materials/DefaultHandMaterial.mat
+Dependencies:
+- E:/Unity/Unity Projects/QuestTest/questtest/OVRAssetBundles/OVRMasterBundle/asset_png0
+- E:/Unity/Unity Projects/QuestTest/questtest/OVRAssetBundles/OVRMasterBundle/asset_shader0
+- E:/Unity/Unity Projects/QuestTest/questtest/OVRAssetBundles/OVRMasterBundle/asset_shadergraph0
+- E:/Unity/Unity Projects/QuestTest/questtest/OVRAssetBundles/OVRMasterBundle/asset_tga0

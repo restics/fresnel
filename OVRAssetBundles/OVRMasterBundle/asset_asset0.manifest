@@ -1,0 +1,58 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.1.4f1
+CRC: 2257264992
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2c44d3c7a0b8ac8018254f93108f71eb
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 6fec4b71dd5fac76940c26de1ef1628d
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 0274a0384a3839277ba282ecf63a287c
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: c5af6ab9d1bd4a47970ad151090281f3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d77c0fe66c705c541ada54398115658d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4cfe1df7ed391a24fbe2a2d275e81b06, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Oculus.Interaction.Samples
+  ClassName: Oculus.Interaction.UITheme/ElementColors
+- AssemblyName: Oculus.Interaction
+  ClassName: Oculus.Interaction.PoseDetection.FingerFeatureStateThreshold
+- AssemblyName: Oculus.Interaction
+  ClassName: Oculus.Interaction.PoseDetection.FingerFeatureThresholds
+- AssemblyName: Oculus.Interaction
+  ClassName: Oculus.Interaction.PoseDetection.ShapeRecognizer/FingerFeatureConfig
+- AssemblyName: Oculus.Interaction
+  ClassName: Oculus.Interaction.PoseDetection.ShapeRecognizer/FingerFeatureConfigList
+Assets:
+- Packages/com.meta.xr.sdk.interaction/Runtime/DefaultSettings/Locomotion/LocomotionThumbFeatureStateThresholds.asset
+- Packages/com.meta.xr.sdk.interaction/Runtime/DefaultSettings/PoseDetection/DefaultThumbFeatureStateThresholds.asset
+- Packages/com.meta.xr.sdk.interaction/Runtime/DefaultSettings/Locomotion/LShape.asset
+- Packages/com.meta.xr.sdk.interaction/Runtime/DefaultSettings/Locomotion/RelaxedCurl.asset
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Themes/UIThemeQuest_Light.asset
+- Packages/com.meta.xr.sdk.interaction/Runtime/DefaultSettings/Locomotion/ExitMicroGesture.asset
+- Packages/com.meta.xr.sdk.interaction/Runtime/DefaultSettings/PoseDetection/DefaultFingerFeatureStateThresholds.asset
+- Packages/com.meta.xr.sdk.interaction/Runtime/DefaultSettings/Locomotion/LocomotionMiddleFeatureStateThresholds.asset
+- Packages/com.meta.xr.sdk.interaction/Runtime/DefaultSettings/Locomotion/LocomotionIndexFeatureStateThresholds.asset
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Themes/UIThemeCustomBrandExample1.asset
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Themes/UIThemeCustomBrandExample2.asset
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Themes/UIThemeQuest_Dark.asset
+Dependencies:
+- E:/Unity/Unity Projects/QuestTest/questtest/OVRAssetBundles/OVRMasterBundle/asset_controller0
+- E:/Unity/Unity Projects/QuestTest/questtest/OVRAssetBundles/OVRMasterBundle/asset_controller1
+- E:/Unity/Unity Projects/QuestTest/questtest/OVRAssetBundles/OVRMasterBundle/asset_mat0
+- E:/Unity/Unity Projects/QuestTest/questtest/OVRAssetBundles/OVRMasterBundle/asset_resources

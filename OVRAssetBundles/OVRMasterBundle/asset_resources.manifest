@@ -1,0 +1,125 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.1.4f1
+CRC: 2950494713
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b5b64df30b44debe4955bc4be57ee8af
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c9ad2fa9444bf1d94a16f46a6d89095b
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 5d01244d72416c597df5c54b2f4460ab
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8922a6ca86889d84f8371a29d37b6dc8, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b3d881e962d099f4a8eb492ef7e9a8c0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2705215ac5b84b70bacc50632be6e391, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 82874db8faf1071438bbcf855a2e8a93, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2b76bcf034ab49e4a8cd30239a716460, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f3fe6e38ac2d4c22b04340d6eda2a47e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 191492db6e452eb468b95433ec162164, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a7d75bea1662418ab5f9e0c22110bc09, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: efa1458c2bc55e04b872c61942be2866, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ab2114bdc8544297b417dfefe9f1e410, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 690929a59dc7a42da9030305190d391f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 60e5406209e5ed147bb02ed71f9c40f3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3863570e7e6387a40ae4f323d83291e5, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Meta.XR.ImmersiveDebugger.Interface
+  ClassName: Meta.XR.ImmersiveDebugger.DebugMember
+- AssemblyName: Meta.XR.ImmersiveDebugger
+  ClassName: Meta.XR.ImmersiveDebugger.DebugData
+- AssemblyName: Meta.XR.ImmersiveDebugger
+  ClassName: Meta.XR.ImmersiveDebugger.InspectedMember
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.FaceInfo_Legacy
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.FontAssetCreationSettings
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.KerningTable
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Character
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_FontFeatureTable
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_FontWeightPair
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Sprite
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_SpriteCharacter
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_SpriteGlyph
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Style
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.FaceInfo
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.Glyph
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.GlyphMetrics
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.GlyphRect
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.LowLevel.GlyphAdjustmentRecord
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.LowLevel.GlyphPairAdjustmentRecord
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.LowLevel.GlyphValueRecord
+Assets:
+- Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat
+- Assets/Resources/OculusRuntimeSettings.asset
+- Assets/Resources/ImmersiveDebuggerSettings.asset
+- Assets/Resources/OVRBuildConfig.asset
+- Assets/XRI/Settings/Resources/XRDeviceSimulatorSettings.asset
+- Assets/Resources/MetaXRAcousticSettings.asset
+- Assets/Resources/MetaXRAcousticMaterialMapping.asset
+- Assets/Resources/InputActions.asset
+- Assets/Resources/OculusPlatformSettings.asset
+- Assets/Resources/OVRPlatformToolSettings.asset
+- Assets/Resources/OVROverlayCanvasSettings.asset
+- Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset
+- Assets/Resources/MetaXRAudioSettings.asset
+- Assets/Resources/PerformanceTestRunInfo.json
+- Assets/XRI/Settings/Resources/InteractionLayerSettings.asset
+- Assets/TextMesh Pro/Resources/TMP Settings.asset
+- Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+- Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Outline.mat
+- Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
+- Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset
+- Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt
+- Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt
+- Assets/Resources/PerformanceTestRunSettings.json
+Dependencies:
+- E:/Unity/Unity Projects/QuestTest/questtest/OVRAssetBundles/OVRMasterBundle/asset_shader0
+- E:/Unity/Unity Projects/QuestTest/questtest/OVRAssetBundles/OVRMasterBundle/asset_ttf0

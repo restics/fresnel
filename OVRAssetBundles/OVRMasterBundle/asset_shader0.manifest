@@ -1,0 +1,34 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.1.4f1
+CRC: 2320926273
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0873c4fdccc39959f36fc654a5191331
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: bb8521372c98e74594d3b7eb1b0a7a88
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: aaa46fafcba16cd4f85b63f14eac2721
+HashAppended: 0
+ClassTypes:
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.meta.xr.sdk.core/Shaders/MetaLit.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Materials/Shaders/LinearGradientUI.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Shaders/Locomotion/TransparentVertexTexture.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Shaders/Locomotion/Hotspot.shader
+- Packages/com.meta.xr.sdk.core/Editor/BuildingBlocks/BlockData/HandTracking/Shaders/OculusSampleAlphaHandOutline.shader
+- Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Shaders/OculusControllerRayShader.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Materials/Shaders/RoundedBoxWithGradientUI.shader
+- Packages/com.meta.xr.sdk.core/Editor/BuildingBlocks/BlockData/RoomModel/Shaders/TransparentTexture.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Shaders/Locomotion/TunnelingEffect.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Materials/Shaders/RoundedBoxUI.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Shaders/OculusHandCursor.shader
+- Packages/com.unity.render-pipelines.universal/Shaders/Lit.shader
+- Packages/com.meta.xr.sdk.interaction/Runtime/Shaders/OculusHand.shader
+Dependencies: []

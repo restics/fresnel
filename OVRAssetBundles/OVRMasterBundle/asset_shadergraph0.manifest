@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.1.4f1
+CRC: 1566236179
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7a8bc2eb04d11e842a964976bdbb26b9
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 4afb0d898c1c22a5e88248733bd69457
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: eb08b55016d2433abd475ef24654b124
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.unity.render-pipelines.universal/Shaders/AutodeskInteractive/AutodeskInteractive.shadergraph
+- Assets/Shaders/sbsShader.shadergraph
+Dependencies: []

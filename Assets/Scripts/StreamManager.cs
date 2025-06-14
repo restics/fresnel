@@ -5,23 +5,26 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Networking;
+using System.Threading.Tasks;
+using System;
 //using Unity.WebRTC;
 
 public class StreamManager : MonoBehaviour
 {
 
-    // public enum StreamSource{
-    //     LIVEKIT,
-    //     WEBRTC
-    // }
-    private string roomToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODAwMDY0MDcsImlzcyI6IkFQSWFTNVVmeXJQS3VjOCIsIm5iZiI6MTc0ODQ3MDQwOCwic3ViIjoiMiIsInZpZGVvIjp7ImNhblB1Ymxpc2giOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsInJvb20iOiJhYmNkIiwicm9vbUpvaW4iOnRydWV9fQ.t3E8f_yQdCS7N9Z4UPCeZs85C9ftFhzNaMfxvLEfYX8";
+    public enum StreamSource{
+        CLOUD,
+        LOCAL
+    }
+    public string roomToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODAwMDY0MDcsImlzcyI6IkFQSWFTNVVmeXJQS3VjOCIsIm5iZiI6MTc0ODQ3MDQwOCwic3ViIjoiMiIsInZpZGVvIjp7ImNhblB1Ymxpc2giOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsInJvb20iOiJhYmNkIiwicm9vbUpvaW4iOnRydWV9fQ.t3E8f_yQdCS7N9Z4UPCeZs85C9ftFhzNaMfxvLEfYX8";
 
     public string wsurl = "wss://test-ky7qsf6n.livekit.cloud";
 
 
-    private string localroomToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODAwMDY0MDcsImlzcyI6IkFQSWFTNVVmeXJQS3VjOCIsIm5iZiI6MTc0ODQ3MDQwOCwic3ViIjoiMiIsInZpZGVvIjp7ImNhblB1Ymxpc2giOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsInJvb20iOiJhYmNkIiwicm9vbUpvaW4iOnRydWV9fQ.t3E8f_yQdCS7N9Z4UPCeZs85C9ftFhzNaMfxvLEfYX8";
+    public string localroomToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidXNlciIsInZpZGVvIjp7InJvb21Kb2luIjp0cnVlLCJyb29tIjoiYSIsImNhblB1Ymxpc2giOnRydWUsImNhblN1YnNjcmliZSI6dHJ1ZSwiY2FuUHVibGlzaERhdGEiOnRydWV9LCJzdWIiOiJpZGVudGl0eSIsImlzcyI6ImRldmtleSIsIm5iZiI6MTc0OTU4MjAwNCwiZXhwIjoxNzQ5NjAzNjA0fQ.GoijGX9h1SSjjpU9pvX2TCn-jUOmoRvyqG2D8ngVd2g";
 
-    public string localwsurl = "wss://test-ky7qsf6n.livekit.cloud";
+    public string localwsurl = "ws://localhost:7880";
     private Room _room;
     private int _retryCount = 0;
     private const int MAX_RETRIES = 3;
@@ -45,7 +48,7 @@ public class StreamManager : MonoBehaviour
     public Vector2 leftTiling = new Vector2(0.5f, 1.0f);
     public Vector2 rightTiling = new Vector2(0.5f, 1.0f);
 
-    //public StreamSource streamSource = StreamSource.LIVEKIT;
+    public StreamSource streamSource = StreamSource.LOCAL;
 
     public float opacity = 1.0f;
 
@@ -114,11 +117,79 @@ public class StreamManager : MonoBehaviour
         // if (streamSource == StreamSource.LIVEKIT) StartCoroutine(ConnectToRoom());
         // else if (streamSource == StreamSource.WEBRTC) StartCoroutine(ConnectToWebRTC());
 
-        StartCoroutine(ConnectToRoom());
+        StartCoroutine(ConnectToRoom(streamSource, "abcd"));
+    }
+    public void FetchTokenCoroutine(string roomName,
+                                    string url,
+                                    Action<string> onSuccess,
+                                    Action<string> onError = null)
+    {
+        StartCoroutine(_FetchToken(roomName, url, onSuccess, onError));
     }
 
-    private IEnumerator ConnectToRoom()
+    private IEnumerator _FetchToken(string roomName,
+                                    string url,
+                                    Action<string> onSuccess,
+                                    Action<string> onError)
     {
+        // Build POST body
+        string jsonData = $"{{\"roomName\":\"{roomName}\"}}";
+        byte[] bodyRaw   = System.Text.Encoding.UTF8.GetBytes(jsonData);
+
+        // Create request
+        using (var request = new UnityWebRequest(url, UnityWebRequest.kHttpVerbPOST))
+        {
+            // request.postData = bodyRaw;
+            request.uploadHandler   = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type",   "application/json");
+            request.SetRequestHeader("X-Sandbox-ID",   "zero-knowledge-blockchain-iae8fm");
+
+            // Send and wait
+            yield return request.SendWebRequest();
+
+            // Handle result
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                // Replace ResponseType with your real response-model struct/class
+                ResponseType rsp = JsonUtility.FromJson<ResponseType>(request.downloadHandler.text);
+
+                Debug.Log($"Connected to room {rsp.roomName} at {rsp.serverUrl} with token {rsp.participantToken} and participant name {rsp.participantName}");
+                onSuccess?.Invoke(rsp.participantToken);     // callback with token
+            }
+            else
+            {
+                string err = $"FetchToken error: {request.error}";
+                Debug.LogError(err);
+                onError?.Invoke(err);
+            }
+        }
+    }
+
+    // POCO that matches the JSON your server returns
+    [Serializable]
+    private struct ResponseType
+    {
+        public string roomName;
+        public string serverUrl;
+        public string participantToken;
+
+        public string participantName;
+    }
+
+    public void ResetRoom(){
+        if (_room != null){
+            _room.TrackSubscribed -= TrackSubscribed;
+            _room.Disconnect();
+        }
+        _room = null;
+        _retryCount = 0;
+        _pendingTexture = null;
+    }
+    
+    public IEnumerator ConnectToRoom(StreamSource source, string roomName)
+    {
+
         _room = new Room();
         _room.TrackSubscribed += TrackSubscribed;
 
@@ -131,7 +202,21 @@ public class StreamManager : MonoBehaviour
         };
 
         Debug.Log($"Attempting to connect to LiveKit room (Attempt {_retryCount + 1}/{MAX_RETRIES})");
-        var connect = _room.Connect(wsurl, roomToken, options);
+        string url = (source == StreamSource.LOCAL) ? localwsurl : wsurl;
+        
+        if (source == StreamSource.CLOUD){
+            FetchTokenCoroutine(roomName, "https://cloud-api.livekit.io/api/sandbox/connection-details", (token) => {
+                roomToken = token;
+            }, (error) => {
+                Debug.LogError($"Failed to fetch token: {error}");
+            }); 
+        }
+
+        string token = (source == StreamSource.LOCAL) ? localroomToken : roomToken;
+        
+        var connect = _room.Connect(url, token, options);
+        
+        Debug.Log($"Connecting to {source} room");
         yield return connect;
 
         if (!connect.IsError)
@@ -158,7 +243,7 @@ public class StreamManager : MonoBehaviour
             {
                 Debug.Log($"Retrying in 5 seconds...");
                 yield return new WaitForSeconds(5);
-                StartCoroutine(ConnectToRoom());
+                StartCoroutine(ConnectToRoom(source, roomName));    
             }
             else
             {
@@ -180,8 +265,17 @@ public class StreamManager : MonoBehaviour
     }
 
     public void UpdateOffset(float newOffset){
-        transform.Find("LeftEye").transform.localPosition = new Vector3(newOffset, 0.0f, 0.0f);
-        transform.Find("RightEye").transform.localPosition = new Vector3(-newOffset, 0.0f, 0.0f);
+        var leftEye = transform.Find("LeftEye");
+        var rightEye = transform.Find("RightEye");
+        leftEye.transform.localPosition = new Vector3(newOffset, leftEye.transform.localPosition.y, leftEye.transform.localPosition.z);
+        rightEye.transform.localPosition = new Vector3(-newOffset, rightEye.transform.localPosition.y, rightEye.transform.localPosition.z);
+    }
+
+    public void UpdateVerticalOffset(float newOffset){
+        var leftEye = transform.Find("LeftEye");
+        var rightEye = transform.Find("RightEye");
+        leftEye.transform.localPosition = new Vector3(leftEye.transform.localPosition.x, newOffset, leftEye.transform.localPosition.z);
+        rightEye.transform.localPosition = new Vector3(rightEye.transform.localPosition.x, -newOffset, rightEye.transform.localPosition.z);
     }
 
     public void UpdateStereoMode(bool isStereo){
@@ -207,6 +301,14 @@ public class StreamManager : MonoBehaviour
             // Set up the texture received event
             stream.TextureReceived += (texture) => {
                 Debug.Log($"TextureReceived event fired - Texture: {(texture != null ? $"{texture.width}x{texture.height}" : "null")}");
+
+
+                var width = texture.width/2.0f; // divide by 2 because we are using two eyes
+                var height = texture.height;
+
+                var aspectRatio = (float)width / (float)height;
+                Debug.Log($"Aspect ratio: {aspectRatio}");  
+                transform.localScale = new Vector3(1000.0f * aspectRatio, 1000.0f, 0.01f); // guarantee 1000px height
                 if (texture != null) {
                     _pendingTexture = texture;
                     Debug.Log($"Updated pending texture: {texture.width}x{texture.height}");
@@ -231,6 +333,7 @@ public class StreamManager : MonoBehaviour
 
         Debug.Log($"Converting texture: {_pendingTexture.width}x{_pendingTexture.height}");
         Texture2D tex2D = ToTexture2D(_pendingTexture);
+        // tex2D = flipTextureHorizontally(tex2D);
         if (tex2D == null)
         {
             Debug.LogError("Failed to convert texture to Texture2D");
@@ -326,5 +429,7 @@ public class StreamManager : MonoBehaviour
         //Debug.Log("Texture conversion completed successfully");
         return result;
     }
+
+
 
 }

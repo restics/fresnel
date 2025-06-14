@@ -37,6 +37,7 @@ RectTransform:
   - {fileID: 8314842156449550184}
   - {fileID: 4433587296928996390}
   - {fileID: 284109057309937699}
+  - {fileID: 3654137187628026635}
   m_Father: {fileID: 8729991361201529730}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -196,14 +197,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4106893426633295594}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: 14, z: 0}
-  m_LocalScale: {x: 173.33183, y: 97.49916, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 0.000019073488, z: 0}
+  m_LocalScale: {x: 1733.3185, y: 974.9917, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7681859566993431976}
   - {fileID: 7090487549247515927}
-  m_Father: {fileID: 8729991361201529730}
+  m_Father: {fileID: 8329311753628823596}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!114 &2972923870068149078
 MonoBehaviour:
@@ -217,8 +218,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3861ad9de399fdd418386189da350232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODAwMDY0MDcsImlzcyI6IkFQSWFTNVVmeXJQS3VjOCIsIm5iZiI6MTc0ODQ3MDQwOCwic3ViIjoiMiIsInZpZGVvIjp7ImNhblB1Ymxpc2giOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsInJvb20iOiJhYmNkIiwicm9vbUpvaW4iOnRydWV9fQ.t3E8f_yQdCS7N9Z4UPCeZs85C9ftFhzNaMfxvLEfYX8
+  wsurl: wss://test-ky7qsf6n.livekit.cloud
+  localroomToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidXNlciIsInZpZGVvIjp7InJvb21Kb2luIjp0cnVlLCJyb29tIjoiYSIsImNhblB1Ymxpc2giOnRydWUsImNhblN1YnNjcmliZSI6dHJ1ZSwiY2FuUHVibGlzaERhdGEiOnRydWV9LCJzdWIiOiJpZGVudGl0eSIsImlzcyI6ImRldmtleSIsIm5iZiI6MTc0OTU4MjAwNCwiZXhwIjoxNzQ5NjAzNjA0fQ.GoijGX9h1SSjjpU9pvX2TCn-jUOmoRvyqG2D8ngVd2g
+  localwsurl: ws://localhost:7880
   leftOffset: {x: 0, y: 0}
   rightOffset: {x: 0.5, y: 0}
+  leftTiling: {x: 0.5, y: 1}
+  rightTiling: {x: 0.5, y: 1}
+  streamSource: 1
+  opacity: 1
 --- !u!33 &6639917376507866958
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -978,7 +987,6 @@ Transform:
   m_Children:
   - {fileID: 3553499984935443428}
   - {fileID: 8329311753628823596}
-  - {fileID: 3654137187628026635}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8707357416589742275

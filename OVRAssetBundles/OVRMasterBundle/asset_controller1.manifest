@@ -1,0 +1,42 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.1.4f1
+CRC: 1594868988
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e2cebac4a12ba02541cf5fcc22b26f94
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ee737d6afc00fec93c1987e485ffa6bd
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 1547ee236d2b59d428a6ef47ac308095
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Light/ToggleButton_Light.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample1/ToggleButtonBorderless_Custom1.controller
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPlus/Animation/MetaQuestTouchPlusLeftAnimation.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/Slider_Dark.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample2/ToggleButton_Custom2.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample2/BorderlessButton_Custom2.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Light/TextInputField_Light.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Light/ToggleSwitch_Light.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample2/TextInputField_Custom2.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample2/ToggleSwitch_Custom2.controller
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForQuest2/Animation/OculusTouchQuest2RightAnimation.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample1/PrimaryButton_Custom1.controller
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPro/Animation/MetaQuestTouchProLeftAnimation.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Light/SecondaryButton_Light.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Light/PrimaryButton_Light.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/TextInputField_Dark.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample1/SecondaryButton_Custom1.controller
+Dependencies:
+- E:/Unity/Unity Projects/QuestTest/questtest/OVRAssetBundles/OVRMasterBundle/asset_fbx0

@@ -1,0 +1,55 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.1.4f1
+CRC: 2943141734
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0da8cdb0815e171d62ef35be675ab3a6
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ee737d6afc00fec93c1987e485ffa6bd
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 991da939314003ca597bacffbbeeb53a
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/SecondaryButton_Dark.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample2/ToggleCheckboxRadio_Custom2.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample2/PrimaryButton_Custom2.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/ToggleCheckboxRadio_Dark.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample1/TextInputField_Custom1.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample2/ToggleButtonBorderless_Custom2.controller
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForQuestAndRiftS/Animation/OculusTouchQuestAndRiftSLeftAnimation.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/BorderlessButton_Dark.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample1/ToggleSwitch_Custom1.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample1/BorderlessButton_Custom1.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/ToggleButton_Borderless_Dark.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/ToggleButton_Dark.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Light/ToggleCheckboxRadio_Light.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample2/SecondaryButton_Custom2.controller
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForQuest2/Animation/OculusTouchQuest2LeftAnimation.controller
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPro/Animation/MetaQuestTouchProRightAnimation.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Light/BorderlessButton_Light.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample1/DestructiveButton_Custom1.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample1/ToggleButton_Custom1.controller
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForRift/Animation/OculusTouchRiftRightAnimation.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample1/ToggleCheckboxRadio_Custom1.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/CustomBrandExample2/DestructiveButton_Custom2.controller
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForQuestAndRiftS/Animation/OculusTouchQuestAndRiftSRightAnimation.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/PrimaryButton_Dark.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Light/ToggleButton_Borderless_Light.controller
+- Packages/com.meta.xr.sdk.core/Meshes/MetaQuestTouchPlus/Animation/MetaQuestTouchPlusRightAnimation.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/ToggleSwitch_Dark.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Dark/DestructiveButton_Dark.controller
+- Packages/com.meta.xr.sdk.interaction/Runtime/Sample/Objects/UISet/Animations/Quest_Light/DestructiveButton_Light.controller
+- Packages/com.meta.xr.sdk.core/Meshes/OculusTouchForRift/Animation/OculusTouchRiftLeftAnimation.controller
+Dependencies:
+- E:/Unity/Unity Projects/QuestTest/questtest/OVRAssetBundles/OVRMasterBundle/asset_fbx0

@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.1.4f1
+CRC: 1575160910
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1319582345dc8ae1a2fda1cc24417e16
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1cfddeea06ce0ec573e0d0ec81ebe20e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: a8aa6d26e2d5d352d6bb60fe8d0e100a
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.unity.ugui/Editor Resources/Gizmos/TMP - Input Field Icon.psd
+- Packages/com.unity.ugui/Editor Resources/Gizmos/TMP - Font Asset Icon.psd
+- Packages/com.unity.ugui/Editor Resources/Gizmos/TMP - Text Component Icon.psd
+Dependencies: []
