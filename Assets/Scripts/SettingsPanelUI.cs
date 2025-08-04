@@ -101,8 +101,8 @@ public class SettingsPanelUI : MonoBehaviour
             return; 
         }
         streamManager.ResetRoom();
-        streamManager.streamSource = toggle.isOn ? StreamManager.StreamSource.CLOUD : StreamManager.StreamSource.LOCAL;
-        StartCoroutine(streamManager.ConnectToRoom(streamManager.streamSource, inputField.text));
+        streamManager.streamSource = toggle.isOn ? StreamManager.StreamSource.LIVEKIT : StreamManager.StreamSource.WEBRTC;
+        streamManager.Connect(streamManager.streamSource, inputField.text);
 
         Debug.Log($" Stream source updated to {streamManager.streamSource}");
     }
@@ -113,6 +113,6 @@ public class SettingsPanelUI : MonoBehaviour
             Debug.LogError("Stream manager not found");
             return; 
         }
-        StartCoroutine(streamManager.ConnectToRoom(streamManager.streamSource, inputField.text));
+        streamManager.Connect(streamManager.streamSource, inputField.text);
     }
 }
