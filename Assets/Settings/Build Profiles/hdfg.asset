@@ -56,8 +56,8 @@ MonoBehaviour:
     - line: '|   targetDevice: 2'
     - line: '|   useOnDemandResources: 0'
     - line: '|   accelerometerFrequency: 60'
-    - line: '|   companyName: DefaultCompany'
-    - line: '|   productName: questtest'
+    - line: '|   companyName: Michael Liu'
+    - line: '|   productName: XRSBSViewer'
     - line: '|   defaultCursor: {instanceID: 0}'
     - line: '|   cursorHotspot: {x: 0, y: 0}'
     - line: '|   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b:
@@ -185,7 +185,7 @@ MonoBehaviour:
     - line: '|   loadStoreDebugModeEnabled: 0'
     - line: '|   visionOSBundleVersion: 1.0'
     - line: '|   tvOSBundleVersion: 1.0'
-    - line: '|   bundleVersion: 0.1.0'
+    - line: '|   bundleVersion: 0.1.2'
     - line: '|   preloadedAssets:'
     - line: '|   - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b,
         type: 3}'
@@ -193,12 +193,6 @@ MonoBehaviour:
         2}'
     - line: '|   - {fileID: 11400000, guid: bcb16b84be09c3e4a9bc8f60104c654c, type:
         2}'
-    - line: '|   - {fileID: 11400000, guid: 98e354c16cc946740b1199f8f6a2df32, type:
-        2}'
-    - line: '|   - {fileID: 8402103121627520130, guid: 8fa248ee1d428a4419f69aae36d9b995,
-        type: 2}'
-    - line: '|   - {fileID: 6939930820819751571, guid: e69a15ee97b531f40855eae9853edaa8,
-        type: 2}'
     - line: '|   metroInputSource: 0'
     - line: '|   wsaTransparentSwapchain: 0'
     - line: '|   m_HolographicPauseOnTrackingLoss: 1'

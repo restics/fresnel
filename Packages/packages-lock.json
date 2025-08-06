@@ -135,7 +135,7 @@
     },
     "com.unity.editorcoroutines": {
       "version": "1.0.0",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -353,6 +353,17 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.webrtc": {
+      "version": "3.0.0-pre.8",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.audio": "1.0.0",
+        "com.unity.editorcoroutines": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.xr.arfoundation": {
       "version": "6.1.0",
       "depth": 1,
@@ -442,13 +453,6 @@
         "com.unity.xr.legacyinputhelpers": "2.1.2"
       },
       "url": "https://packages.unity.com"
-    },
-    "io.livekit.livekit-sdk": {
-      "version": "https://github.com/livekit/client-sdk-unity.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "0ebcf0d7c8992e00b48cce6c27c8c8644c7d3ec7"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",

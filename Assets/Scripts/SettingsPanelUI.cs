@@ -15,6 +15,15 @@ public class SettingsPanelUI : MonoBehaviour
         _originalPanelScaleY = streamManager.transform.localScale.y;
         _originalPanelPositionY = streamManager.transform.localPosition.y;
 
+        var textbox = GetComponent<TMP_InputField>();
+        if (textbox != null)
+        {
+            textbox.text = PlayerPrefs.GetString("url", streamManager.localwsurl);
+        }
+        else
+        {
+            Debug.LogError("TMP_InputField not found on SettingsPanelUI");
+        }
     }
 
 
@@ -106,40 +115,32 @@ public class SettingsPanelUI : MonoBehaviour
         Debug.Log($" Stream source updated to {streamManager.streamSource}");
     }
 
-    public void ConnectToRoom(TMP_InputField inputField){
-        Debug.Log($"Connecting to room: {inputField.text}");
+    public void ConnectToRoom(){
+       
         var streamManager = FindFirstObjectByType<StreamManager>();
+        
         if (streamManager == null){ 
             Debug.LogError("Stream manager not found");
             return; 
         }
-        streamManager.Connect(streamManager.streamSource, inputField.text);
+
+        Debug.Log($"Connecting to room: {streamManager.localwsurl}");
+        streamManager.Connect(streamManager.streamSource);
     }
     public void updateUrlFromBar(TMP_InputField urlBar)
     {
         Debug.Log($"Updating URL from bar: {urlBar.text}");
         var streamManager = FindFirstObjectByType<StreamManager>();
-        if (streamManager.streamSource == StreamManager.StreamSource.LIVEKIT)
-        {
-            streamManager.wsurl = urlBar.text;
-        }
-        else
-        {
+
             streamManager.localwsurl = urlBar.text;
-        }
+        
 
     }
 
     public void updateUrlBar(TMP_InputField urlBar)
     {
         var streamManager = FindFirstObjectByType<StreamManager>();
-        if (streamManager.streamSource == StreamManager.StreamSource.LIVEKIT)
-        {
-            urlBar.text = streamManager.wsurl;
-        }
-        else
-        {
             urlBar.text = streamManager.localwsurl;
-        }
+       
     }
 }
