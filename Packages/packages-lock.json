@@ -96,7 +96,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ai.navigation": {
-      "version": "2.0.7",
+      "version": "2.0.8",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -135,7 +135,7 @@
     },
     "com.unity.editorcoroutines": {
       "version": "1.0.0",
-      "depth": 1,
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -353,17 +353,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.webrtc": {
-      "version": "3.0.0-pre.8",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.modules.audio": "1.0.0",
-        "com.unity.editorcoroutines": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.xr.arfoundation": {
       "version": "6.1.0",
       "depth": 1,
@@ -455,10 +444,11 @@
       "url": "https://packages.unity.com"
     },
     "io.livekit.livekit-sdk": {
-      "version": "file:C:/Users/LabUser/Downloads/client-sdk-unity-duan-fix-broken-android-so/client-sdk-unity-duan-fix-broken-android-so",
+      "version": "https://github.com/livekit/client-sdk-unity.git",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "0ebcf0d7c8992e00b48cce6c27c8c8644c7d3ec7"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",

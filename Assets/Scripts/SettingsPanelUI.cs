@@ -7,7 +7,6 @@ public class SettingsPanelUI : MonoBehaviour
     private float _originalPanelScaleX = 1.0f;
     private float _originalPanelScaleY = 1.0f;
     private float _originalPanelPositionY = 0.0f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Start()
     {
@@ -18,11 +17,6 @@ public class SettingsPanelUI : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void OnOpacitySliderUpdate(){
         var slider = GetComponent<Slider>();
@@ -93,26 +87,59 @@ public class SettingsPanelUI : MonoBehaviour
         Debug.Log($" Stereo mode updated to {toggle.isOn}");
     }
 
-    public void OnStreamSourceUpdate(TMP_InputField inputField){
+    public void OnStreamSourceUpdate(TMP_InputField roomField)
+    {
+        Debug.Log($"Updating stream source with room: {roomField.text}");
         var toggle = GetComponent<Toggle>();
         var streamManager = FindFirstObjectByType<StreamManager>();
         if (toggle == null || streamManager == null){ 
             Debug.LogError("Toggle or stream manager not found");
             return; 
         }
+
+  
         streamManager.ResetRoom();
         streamManager.streamSource = toggle.isOn ? StreamManager.StreamSource.LIVEKIT : StreamManager.StreamSource.WEBRTC;
-        streamManager.Connect(streamManager.streamSource, inputField.text);
+
+        streamManager.Connect(streamManager.streamSource, roomField.text);
 
         Debug.Log($" Stream source updated to {streamManager.streamSource}");
     }
 
     public void ConnectToRoom(TMP_InputField inputField){
+        Debug.Log($"Connecting to room: {inputField.text}");
         var streamManager = FindFirstObjectByType<StreamManager>();
         if (streamManager == null){ 
             Debug.LogError("Stream manager not found");
             return; 
         }
         streamManager.Connect(streamManager.streamSource, inputField.text);
+    }
+    public void updateUrlFromBar(TMP_InputField urlBar)
+    {
+        Debug.Log($"Updating URL from bar: {urlBar.text}");
+        var streamManager = FindFirstObjectByType<StreamManager>();
+        if (streamManager.streamSource == StreamManager.StreamSource.LIVEKIT)
+        {
+            streamManager.wsurl = urlBar.text;
+        }
+        else
+        {
+            streamManager.localwsurl = urlBar.text;
+        }
+
+    }
+
+    public void updateUrlBar(TMP_InputField urlBar)
+    {
+        var streamManager = FindFirstObjectByType<StreamManager>();
+        if (streamManager.streamSource == StreamManager.StreamSource.LIVEKIT)
+        {
+            urlBar.text = streamManager.wsurl;
+        }
+        else
+        {
+            urlBar.text = streamManager.localwsurl;
+        }
     }
 }

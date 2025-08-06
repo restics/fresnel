@@ -193,6 +193,12 @@ MonoBehaviour:
         2}'
     - line: '|   - {fileID: 11400000, guid: bcb16b84be09c3e4a9bc8f60104c654c, type:
         2}'
+    - line: '|   - {fileID: 11400000, guid: 98e354c16cc946740b1199f8f6a2df32, type:
+        2}'
+    - line: '|   - {fileID: 8402103121627520130, guid: 8fa248ee1d428a4419f69aae36d9b995,
+        type: 2}'
+    - line: '|   - {fileID: 6939930820819751571, guid: e69a15ee97b531f40855eae9853edaa8,
+        type: 2}'
     - line: '|   metroInputSource: 0'
     - line: '|   wsaTransparentSwapchain: 0'
     - line: '|   m_HolographicPauseOnTrackingLoss: 1'
@@ -306,7 +312,7 @@ MonoBehaviour:
     - line: '|   clonedFromGUID: 3c72c65a16f0acb438eed22b8b16c24a'
     - line: '|   templatePackageId: com.unity.template.urp-blank@17.0.14'
     - line: '|   templateDefaultScene: Assets/Scenes/SampleScene.unity'
-    - line: '|   useCustomMainManifest: 0'
+    - line: '|   useCustomMainManifest: 1'
     - line: '|   useCustomLauncherManifest: 0'
     - line: '|   useCustomMainGradleTemplate: 0'
     - line: '|   useCustomLauncherGradleManifest: 0'
@@ -1023,7 +1029,7 @@ MonoBehaviour:
         m_ExportAsGoogleAndroidProject: 0
         m_DebugSymbolLevel: 1
         m_DebugSymbolFormat: 5
-        m_CurrentDeploymentTargetId: 2G0YC5ZF7S019R
+        m_CurrentDeploymentTargetId: 2G0YC1ZG2J071Q
         m_BuildType: 2
         m_BuildAppBundle: 0
         m_IPAddressToConnect: 
