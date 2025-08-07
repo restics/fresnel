@@ -52,6 +52,8 @@ public class StreamManager : MonoBehaviour
     private MediaStream receiveStream;
     private RTCPeerConnection pc;
 
+    private bool isConnecting = false;
+
     void Start()
     {
 #if WEBRTC_3_0_0_PRE_5_OR_BEFORE
@@ -119,6 +121,11 @@ public class StreamManager : MonoBehaviour
 
     public void Connect(StreamSource streamsource, string Roomname = "abcd")
     {
+        if (isConnecting)
+        {
+            Debug.LogWarning("Already connecting to a room. Please wait.");
+            return;
+        }
         StartCoroutine(ConnectToWebRTC());
     }
 
@@ -128,6 +135,7 @@ public class StreamManager : MonoBehaviour
     
     public IEnumerator ConnectToWebRTC()
     {
+        isConnecting = true;
         //transform.rotation = Quaternion.Euler(0, 0, 0);
         StartCoroutine(WebRTC.Update());
 
@@ -242,6 +250,7 @@ public class StreamManager : MonoBehaviour
         // When got answer, set remote description.
         IEnumerator OnGotAnswerSuccess(string answer)
         {
+            isConnecting = false;
             RTCSessionDescription desc = new RTCSessionDescription();
             desc.type = RTCSdpType.Answer;
             desc.sdp = answer;

@@ -11,10 +11,8 @@ public class SettingsPanelUI : MonoBehaviour
     void Start()
     {
         var streamManager = FindFirstObjectByType<StreamManager>();
-        _originalPanelScaleX = streamManager.transform.localScale.x;
-        _originalPanelScaleY = streamManager.transform.localScale.y;
+        updatePanelScale();
         _originalPanelPositionY = streamManager.transform.localPosition.y;
-
         var textbox = GetComponent<TMP_InputField>();
         if (textbox != null)
         {
@@ -26,7 +24,13 @@ public class SettingsPanelUI : MonoBehaviour
         }
     }
 
+    public void updatePanelScale()
+    {
+        var streamManager = FindFirstObjectByType<StreamManager>();
+        _originalPanelScaleX = streamManager.transform.localScale.x;
+        _originalPanelScaleY = streamManager.transform.localScale.y;
 
+    }
     public void OnOpacitySliderUpdate(){
         var slider = GetComponent<Slider>();
 
@@ -106,7 +110,7 @@ public class SettingsPanelUI : MonoBehaviour
             return; 
         }
 
-  
+
         streamManager.ResetRoom();
         streamManager.streamSource = toggle.isOn ? StreamManager.StreamSource.LIVEKIT : StreamManager.StreamSource.WEBRTC;
 
