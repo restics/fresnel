@@ -18,10 +18,7 @@ public class SettingsPanelUI : MonoBehaviour
         {
             textbox.text = PlayerPrefs.GetString("url", streamManager.localwsurl);
         }
-        else
-        {
-            Debug.LogError("TMP_InputField not found on SettingsPanelUI");
-        }
+
     }
 
     public void updatePanelScale()
@@ -83,7 +80,7 @@ public class SettingsPanelUI : MonoBehaviour
             Debug.LogError("Slider or stream manager not found");
             return; 
         }
-        var mappedScale = Mathf.Lerp(0.1f, 2.0f, slider.value);
+        var mappedScale = Mathf.Lerp(0.1f, 4.0f, slider.value);
         streamManager.transform.localScale = new Vector3(mappedScale*_originalPanelScaleX, mappedScale*_originalPanelScaleY, 0.01f);
         streamManager.transform.localPosition = new Vector3(0, _originalPanelPositionY * mappedScale, 0);
 
